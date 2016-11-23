@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+
+body {
+	font-family: 'Noto Sans';
+}
+
+.monthly-day-event {
+  padding-top: 30px;
+}
+.monthly-day-number {
+  padding: 4px 0 0 4px;
+}
+.monthly-indicator-wrap {
+  height: 100%;
+}
+.monthly-today .monthly-day-number {
+  top: 4px;
+  left: 4px;
+  padding: 2px;
+}
+.monthly-header-title a {
+  line-height: 20px;
+  padding-top: 0 !important;
+}
+.monthly-header-title a:last-of-type {
+}
+.monthly-indicator-wrap > .monthly-event-indicator:first-of-type {
+  background: transparent;
+  text-align: right;
+  color: #333;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -30px;
+  padding-right: 10px;
+  font-size: 15px;
+  font-weight: normal;
+}
+.monthly-event-list .listed-event {
+  color: #666;
+}
+.monthly-day .monthly-event-indicator .amount {
+  right: 10px;
+  position: absolute;
+}
+.monthly-day .monthly-event-indicator {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.monthly-event-indicator:first-of-type {
+  color: #666 !important;
+  background: none !important;
+}
+.monthly-event-indicator:first-of-type.positive {
+  color: #090 !important;
+  background: none !important;
+}
+.monthly-event-indicator:first-of-type.negative {
+  color: #900 !important;
+  background: none !important;
+}
+.monthly-event-indicator {
+  background: rgba(0, 0, 0, .5) !important;
+}
+.monthly-event-indicator.positive {
+  background: rgba(0, 153, 0, .5) !important;
+}
+.monthly-event-indicator.negative {
+  background: rgba(153, 0, 0, .5) !important;
+}

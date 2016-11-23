@@ -1,0 +1,19 @@
+{% set i = 0 %}
+[
+{% for date,value in data %}
+{% set i = i + 1 %}
+  {
+    "id": {{ i }},
+    "name": "{{ value.amount }}",
+    "startdate": "{{ date|replace({'-0': '-'}) }}"
+  },
+{% for key,transaction in value.transactions %}
+{% set i = i + 1 %}
+  {
+    "id": {{ i }},
+    "name": "{{ transaction.title }}|{{ transaction.amount }}",
+    "startdate": "{{ date|replace({'-0': '-'}) }}"
+  },
+{% endfor %}
+{% endfor %}
+]
