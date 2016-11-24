@@ -1,25 +1,31 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <title>Peso</title>
-    <link rel="stylesheet" href="assets/css/monthly.css">
-    <link rel="stylesheet" href="assets/css/calendar.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta charset='utf-8'>
-  </head>
-  <body>
-    <div class="monthly" id="calendar"></div>
+<?php
+  error_reporting(E_ALL); ini_set('display_errors', 1);
 
-    <script type="text/javascript" src="assets/js/jquery.js"></script>
-    <script type="text/javascript" src="assets/js/monthly.js"></script>
-    <script type="text/javascript">
-      $(window).load( function() {
-        $('#calendar').monthly({
-          mode: 'event',
-          data: <?php include('events.php'); ?>
-        });
-      });
-    </script>
-  </body>
-</html>
+  include_once("includes/Twig/Autoloader.php");
+  Twig_Autoloader::register();
+
+  $loader = new Twig_Loader_Filesystem('templates');
+  $twig = new Twig_Environment($loader, array());
+
+  $postJSON = function($json) {
+    $ch = curl_init('http://peso.rerainc.com/api/public/');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Content-Length: ' . strlen($json))
+    );
+    return curl_exec($ch);
+  };
+
+  // get events from peso rest service
+  $json = file_get_contents("demo.json");
+  $data = $postJSON($json);
+  $events = json_decode($data, true);
+
+  // print_r("JSON:\n".$events);
+  //print_r($data);
+
+  echo $twig->render('dashboard.html', array('events' => $events));
+?>

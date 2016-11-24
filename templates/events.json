@@ -1,6 +1,6 @@
 {% set i = 0 %}
 [
-{% for date,value in data %}
+{% for date,value in events %}
 {% set i = i + 1 %}
   {
     "id": {{ i }},

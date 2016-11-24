@@ -1,0 +1,16 @@
+{% include 'header.html' %}
+
+  <div class="monthly" id="calendar"></div>
+
+  <script type="text/javascript" src="assets/js/jquery.js"></script>
+  <script type="text/javascript" src="assets/js/monthly.js"></script>
+  <script type="text/javascript">
+    $(window).load( function() {
+      $('#calendar').monthly({
+        mode: 'event',
+        data: {{ include('events.json') }}
+      });
+    });
+  </script>
+
+{% include 'footer.html' %}
